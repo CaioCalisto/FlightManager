@@ -1,7 +1,5 @@
 import {Passenger} from "./passenger";
 
-export * from '@testing-library/react'
-
 it('should map passenger with all data', () => {
     const title = 'MR';
     const gender = 'MALE';
