@@ -1,6 +1,7 @@
 import {Passenger} from "./passenger";
 import {MenuItem, Select, TextField} from "@mui/material";
 import {usePassengerDetails} from "./usePassengerDetails";
+import './edit.css'
 
 type Props = {
     passengerIds: string[]
@@ -12,7 +13,7 @@ export const Edit = ({passengerIds}: Props) => {
     return (
         <>
             {data && data.map((passenger: Passenger) => (
-                    <>
+                    <div className={"form"}>
                         <Select
                             data-testid={`passenger-title-${passenger.getId()}`}
                             value={passenger.getTitle()}
@@ -23,6 +24,12 @@ export const Edit = ({passengerIds}: Props) => {
                             <MenuItem value={'MR'}>MR</MenuItem>
                             <MenuItem value={'MRS'}>MRS</MenuItem>
                         </Select>
+                        <TextField data-testid={`passenger-first-name-${passenger.getId()}`} label="First Name"
+                                   variant="standard"
+                                   value={passenger.getFirstName()}/>
+                        <TextField data-testid={`passenger-last-name-${passenger.getId()}`} label="Last Name"
+                                   variant="standard"
+                                   value={passenger.getLastName()}/>
                         <Select
                             data-testid={`passenger-gender-${passenger.getId()}`}
                             value={passenger.getGender()}
@@ -33,13 +40,11 @@ export const Edit = ({passengerIds}: Props) => {
                             <MenuItem value={'MR'}>MALE</MenuItem>
                             <MenuItem value={'MRS'}>FEMALE</MenuItem>
                         </Select>
-                        <TextField data-testid={`passenger-first-name-${passenger.getId()}`} label="First Name" variant="standard"
-                                   value={passenger.getFirstName()}/>
-                        <TextField data-testid={`passenger-last-name-${passenger.getId()}`} label="Last Name" variant="standard"
-                                   value={passenger.getLastName()}/>
-                        <TextField data-testid={`passenger-date-of-birth-${passenger.getId()}`} label="Date of birth" variant="standard"
+
+                        <TextField data-testid={`passenger-date-of-birth-${passenger.getId()}`} label="Date of birth"
+                                   variant="standard"
                                    value={passenger.getDateOfBirth()}/>
-                    </>
+                    </div>
                 )
             )}
         </>
