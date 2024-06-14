@@ -55,4 +55,21 @@ export class Passenger {
             this.firstName = newFirstName;
         }
     }
+
+    setLastName(newLastName: string): void {
+        const minLength = Math.min(newLastName.length, this.lastName.length);
+        let differenceCount = 0;
+
+        for (let i = 0; i < minLength; i++) {
+            if (newLastName[i] !== this.lastName[i]) {
+                differenceCount++;
+            }
+        }
+
+        if (differenceCount > 3) {
+            this.errors.push('Maximum a change of 3 digits for last name is allowed')
+        } else {
+            this.lastName = newLastName
+        }
+    }
 }
