@@ -18,7 +18,7 @@ it('should map passenger with all data', () => {
 })
 
 it('should change firstName 1 character without error', () => {
-    const passenger = new Passenger('MR', 'MALE', 'Natalis', 'Calisto', '1988-08-20')
+    const passenger = new Passenger('MRS', 'MALE', 'Natalis', 'Calisto', '1988-08-20')
     const newFirstName = 'Natalia';
     passenger.setFirstName(newFirstName)
 
@@ -26,7 +26,7 @@ it('should change firstName 1 character without error', () => {
 })
 
 it('should change firstName 2 character without error', () => {
-    const passenger = new Passenger('MR', 'MALE', 'Nstalis', 'Calisto', '1988-08-20')
+    const passenger = new Passenger('MRS', 'MALE', 'Nstalis', 'Calisto', '1988-08-20')
     const newFirstName = 'Natalia';
     passenger.setFirstName(newFirstName)
 
@@ -34,7 +34,7 @@ it('should change firstName 2 character without error', () => {
 })
 
 it('should change firstName 3 character without error', () => {
-    const passenger = new Passenger('MR', 'MALE', 'Nstslis', 'Calisto', '1988-08-20')
+    const passenger = new Passenger('MRS', 'MALE', 'Nstslis', 'Calisto', '1988-08-20')
     const newFirstName = 'Natalia';
     passenger.setFirstName(newFirstName)
 
@@ -42,7 +42,7 @@ it('should change firstName 3 character without error', () => {
 })
 
 it('should add error if firstName change more than 3 characters', () => {
-    const passenger = new Passenger('MR', 'MALE', 'Nstsluq', 'Calisto', '1988-08-20')
+    const passenger = new Passenger('MRS', 'MALE', 'Nstsluq', 'Calisto', '1988-08-20')
     passenger.setFirstName('Natalia')
 
     expect(passenger.getErrors().length).toBe(1)
@@ -79,4 +79,20 @@ it('should add error if lastName change more than 3 characters', () => {
 
     expect(passenger.getErrors().length).toBe(1)
     expect(passenger.getErrors()[0]).toBe('Maximum a change of 3 digits for last name is allowed')
+})
+
+it('should change gender', () => {
+    const passenger = new Passenger('MR', 'MALE', 'Anyone', 'Else', '1988-08-20')
+    const newGender = 'FEMALE'
+    passenger.setGender(newGender)
+
+    expect(passenger.getGender()).toBe(newGender)
+})
+
+it('should change title', () => {
+    const passenger = new Passenger('MR', 'MALE', 'Anyone', 'Else', '1988-08-20')
+    const newTitle = 'MRS'
+    passenger.setTitle(newTitle)
+
+    expect(passenger.getTitle()).toBe(newTitle)
 })

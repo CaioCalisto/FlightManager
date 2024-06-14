@@ -1,12 +1,15 @@
+type Title = "MR" | "MRS";
+type Gender = "MALE" | "FEMALE"
+
 export class Passenger {
-    private title: string;
-    private gender: string;
+    private title: Title;
+    private gender: Gender;
     private firstName: string;
     private lastName: string;
     private dateOfBirth: string;
     private errors: string[];
 
-    constructor(title: string, gender: string, firstName: string, lastName: string, dateOfBirth: string) {
+    constructor(title: Title, gender: Gender, firstName: string, lastName: string, dateOfBirth: string) {
         this.title = title;
         this.gender = gender;
         this.firstName = firstName;
@@ -15,11 +18,11 @@ export class Passenger {
         this.errors = [];
     }
 
-    getTitle(): string {
+    getTitle(): Title {
         return this.title
     }
 
-    getGender(): string {
+    getGender(): Gender {
         return this.gender;
     }
 
@@ -71,5 +74,13 @@ export class Passenger {
         } else {
             this.lastName = newLastName
         }
+    }
+
+    setGender(newGender: Gender): void {
+        this.gender = newGender
+    }
+
+    setTitle(newTitle: Title): void {
+        this.title = newTitle
     }
 }
