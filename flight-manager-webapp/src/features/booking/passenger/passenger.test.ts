@@ -1,13 +1,15 @@
 import {Passenger} from "./passenger";
 
 it('should map passenger with all data', () => {
+    const id = 1;
     const title = 'MR';
     const gender = 'MALE';
     const firstName = 'Caio';
     const lastName = 'Calisto';
     const dateOfBirth = '1988-08-20';
-    const passenger = new Passenger(title, gender, firstName, lastName, dateOfBirth)
+    const passenger = new Passenger(id, title, gender, firstName, lastName, dateOfBirth)
 
+    expect(passenger.getId()).toBe(id)
     expect(passenger.getTitle()).toBe(title)
     expect(passenger.getGender()).toBe(gender)
     expect(passenger.getFirstName()).toBe(firstName)
@@ -16,7 +18,7 @@ it('should map passenger with all data', () => {
 })
 
 it('should change firstName 1 character without error', () => {
-    const passenger = new Passenger('MRS', 'MALE', 'Natalis', 'Calisto', '1988-08-20')
+    const passenger = new Passenger(1, 'MRS', 'MALE', 'Natalis', 'Calisto', '1988-08-20')
     const newFirstName = 'Natalia';
     passenger.setFirstName(newFirstName)
 
@@ -24,7 +26,7 @@ it('should change firstName 1 character without error', () => {
 })
 
 it('should change firstName 2 character without error', () => {
-    const passenger = new Passenger('MRS', 'MALE', 'Nstalis', 'Calisto', '1988-08-20')
+    const passenger = new Passenger(1, 'MRS', 'MALE', 'Nstalis', 'Calisto', '1988-08-20')
     const newFirstName = 'Natalia';
     passenger.setFirstName(newFirstName)
 
@@ -32,7 +34,7 @@ it('should change firstName 2 character without error', () => {
 })
 
 it('should change firstName 3 character without error', () => {
-    const passenger = new Passenger('MRS', 'MALE', 'Nstslis', 'Calisto', '1988-08-20')
+    const passenger = new Passenger(1, 'MRS', 'MALE', 'Nstslis', 'Calisto', '1988-08-20')
     const newFirstName = 'Natalia';
     passenger.setFirstName(newFirstName)
 
@@ -40,7 +42,7 @@ it('should change firstName 3 character without error', () => {
 })
 
 it('should add error if firstName change more than 3 characters', () => {
-    const passenger = new Passenger('MRS', 'MALE', 'Nstsluq', 'Calisto', '1988-08-20')
+    const passenger = new Passenger(1, 'MRS', 'MALE', 'Nstsluq', 'Calisto', '1988-08-20')
     passenger.setFirstName('Natalia')
 
     expect(passenger.getErrors().length).toBe(1)
@@ -48,7 +50,7 @@ it('should add error if firstName change more than 3 characters', () => {
 })
 
 it('should change lastName 1 character without error', () => {
-    const passenger = new Passenger('MR', 'MALE', 'Caio', 'Calidto', '1988-08-20')
+    const passenger = new Passenger(1, 'MR', 'MALE', 'Caio', 'Calidto', '1988-08-20')
     const newLastName = 'Calisto';
     passenger.setLastName(newLastName)
 
@@ -56,7 +58,7 @@ it('should change lastName 1 character without error', () => {
 })
 
 it('should change lastName 2 character without error', () => {
-    const passenger = new Passenger('MR', 'MALE', 'Caio', 'Calidtp', '1988-08-20')
+    const passenger = new Passenger(1, 'MR', 'MALE', 'Caio', 'Calidtp', '1988-08-20')
     const newLastName = 'Calisto';
     passenger.setLastName(newLastName)
 
@@ -64,7 +66,7 @@ it('should change lastName 2 character without error', () => {
 })
 
 it('should change lastName 3 character without error', () => {
-    const passenger = new Passenger('MR', 'MALE', 'Caio', 'Cslidtp', '1988-08-20')
+    const passenger = new Passenger(1, 'MR', 'MALE', 'Caio', 'Cslidtp', '1988-08-20')
     const newLastName = 'Calisto';
     passenger.setLastName(newLastName)
 
@@ -72,7 +74,7 @@ it('should change lastName 3 character without error', () => {
 })
 
 it('should add error if lastName change more than 3 characters', () => {
-    const passenger = new Passenger('MR', 'MALE', 'Caio', 'Cskidtp', '1988-08-20')
+    const passenger = new Passenger(1, 'MR', 'MALE', 'Caio', 'Cskidtp', '1988-08-20')
     passenger.setLastName('Calisto')
 
     expect(passenger.getErrors().length).toBe(1)
@@ -80,7 +82,7 @@ it('should add error if lastName change more than 3 characters', () => {
 })
 
 it('should change gender', () => {
-    const passenger = new Passenger('MR', 'MALE', 'Anyone', 'Else', '1988-08-20')
+    const passenger = new Passenger(1, 'MR', 'MALE', 'Anyone', 'Else', '1988-08-20')
     const newGender = 'FEMALE'
     passenger.setGender(newGender)
 
@@ -88,7 +90,7 @@ it('should change gender', () => {
 })
 
 it('should change title', () => {
-    const passenger = new Passenger('MR', 'MALE', 'Anyone', 'Else', '1988-08-20')
+    const passenger = new Passenger(1, 'MR', 'MALE', 'Anyone', 'Else', '1988-08-20')
     const newTitle = 'MRS'
     passenger.setTitle(newTitle)
 

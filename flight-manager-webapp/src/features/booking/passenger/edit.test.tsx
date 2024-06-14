@@ -6,7 +6,7 @@ import {usePassengerDetails} from "./usePassengerDetails";
 jest.mock('./usePassengerDetails')
 
 it('should show current passenger title', () => {
-    const passenger = new Passenger('MR', 'MALE', 'Caio', 'Calisto', '1988-08-20');
+    const passenger = new Passenger(1, 'MR', 'MALE', 'Caio', 'Calisto', '1988-08-20');
     (usePassengerDetails as jest.Mock).mockImplementation(() => ({ data: [passenger]}))
     render(<Edit passengerIds={['1']}/>)
 
@@ -16,7 +16,7 @@ it('should show current passenger title', () => {
 })
 
 it('should show current passenger gender', () => {
-    const passenger = new Passenger('MR', 'MALE', 'Caio', 'Calisto', '1988-08-20');
+    const passenger = new Passenger(1, 'MR', 'MALE', 'Caio', 'Calisto', '1988-08-20');
     (usePassengerDetails as jest.Mock).mockImplementation(() => ({ data: [passenger]}))
     render(<Edit passengerIds={['1']}/>)
 
@@ -26,7 +26,7 @@ it('should show current passenger gender', () => {
 })
 
 it('should show current passenger first name', () => {
-    const passenger = new Passenger('MR', 'MALE', 'Caio', 'Calisto', '1988-08-20');
+    const passenger = new Passenger(1, 'MR', 'MALE', 'Caio', 'Calisto', '1988-08-20');
     (usePassengerDetails as jest.Mock).mockImplementation(() => ({ data: [passenger]}))
     render(<Edit passengerIds={['1']}/>)
 
@@ -36,7 +36,7 @@ it('should show current passenger first name', () => {
 })
 
 it('should show current passenger last name', () => {
-    const passenger = new Passenger('MR', 'MALE', 'Caio', 'Calisto', '1988-08-20');
+    const passenger = new Passenger(1, 'MR', 'MALE', 'Caio', 'Calisto', '1988-08-20');
     (usePassengerDetails as jest.Mock).mockImplementation(() => ({ data: [passenger]}))
     render(<Edit passengerIds={['1']}/>)
 
@@ -46,7 +46,7 @@ it('should show current passenger last name', () => {
 })
 
 it('should show current passenger date of birth', () => {
-    const passenger = new Passenger('MR', 'MALE', 'Caio', 'Calisto', '1988-08-20');
+    const passenger = new Passenger(1, 'MR', 'MALE', 'Caio', 'Calisto', '1988-08-20');
     (usePassengerDetails as jest.Mock).mockImplementation(() => ({ data: [passenger]}))
     render(<Edit passengerIds={['1']}/>)
 
