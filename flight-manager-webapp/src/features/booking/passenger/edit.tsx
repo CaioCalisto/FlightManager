@@ -1,4 +1,4 @@
-import {Gender, Passenger, Title} from "./passenger";
+import {Passenger} from "./passenger";
 import {Button, MenuItem, Select, TextField} from "@mui/material";
 import {usePassengerDetails} from "./usePassengerDetails";
 import './edit.css'

@@ -4,11 +4,11 @@ import {useEffect, useState} from "react";
 
 interface UsePassengerDetailsResponse {
     data: Passenger[] | undefined
-    changeFirstName: (id: number, value: string) => void
-    changeLastName: (id: number, value: string) => void
-    changeDateOfBirth: (id: number, value: string) => void
-    changeTitle: (id: number, value: string) => void
-    changeGender: (id: number, value: string) => void
+    changeFirstName: (passengerId: number, value: string) => void
+    changeLastName: (passengerId: number, value: string) => void
+    changeDateOfBirth: (passengerId: number, value: string) => void
+    changeTitle: (passengerId: number, value: string) => void
+    changeGender: (passengerId: number, value: string) => void
     submit: () => void
 }
 
@@ -23,19 +23,19 @@ export function usePassengerDetails(passengerIds: string[]): UsePassengerDetails
     function submit() {
     }
 
-    function changeFirstName(id: number, value: string) {
+    function changeFirstName(passengerId: number, value: string) {
     }
 
-    function changeLastName(id: number, value: string) {
+    function changeLastName(passengerId: number, value: string) {
     }
 
-    function changeDateOfBirth(id: number, value: string) {
+    function changeDateOfBirth(passengerId: number, value: string) {
     }
 
-    function changeTitle(id: number, value: string) {
+    function changeTitle(passengerId: number, value: string) {
     }
 
-    function changeGender(id: number, value: string) {
+    function changeGender(passengerId: number, value: string) {
     }
 
     return {data, changeFirstName, changeLastName, changeDateOfBirth, changeTitle, changeGender, submit}
