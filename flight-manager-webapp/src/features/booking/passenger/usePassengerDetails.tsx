@@ -88,5 +88,4 @@ export function usePassengerDetails(passengerIds: string[]): UsePassengerDetails
     }
 
     return {data, changeFirstName, changeLastName, changeDateOfBirth, changeTitle, changeGender, submit}
-    //return {data: [new Passenger(1, 'MRS', 'FEMALE', 'Natalia', 'Calisto', '1989-03-20'),new Passenger(1, 'MR', 'MALE', 'Caio', 'Calisto', '1988-08-20')], changeFirstName, changeLastName, changeDateOfBirth, changeTitle, changeGender, submit}
 }
