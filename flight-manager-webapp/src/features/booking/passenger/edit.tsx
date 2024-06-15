@@ -1,5 +1,5 @@
-import {Passenger} from "./passenger";
-import {MenuItem, Select, TextField} from "@mui/material";
+import {Gender, Passenger, Title} from "./passenger";
+import {Button, MenuItem, Select, TextField} from "@mui/material";
 import {usePassengerDetails} from "./usePassengerDetails";
 import './edit.css'
 
@@ -8,15 +8,17 @@ type Props = {
 }
 
 export const Edit = ({passengerIds}: Props) => {
-    const {data} = usePassengerDetails(passengerIds)
+    const {data, changeFirstName, changeLastName, changeDateOfBirth} = usePassengerDetails(passengerIds)
 
     return (
         <>
-            {data && data.map((passenger: Passenger) => (
-                    <div className={"form"}>
+            {data?.map((passenger: Passenger) => (
+                    <form key={`booking-passenger-edit-${passenger.getId()}`} onSubmit={() => {
+                    }}>
                         <Select
                             data-testid={`passenger-title-${passenger.getId()}`}
                             value={passenger.getTitle()}
+                            name={'title'}
                             label="Title"
                             onChange={() => {
                             }}
@@ -25,26 +27,39 @@ export const Edit = ({passengerIds}: Props) => {
                             <MenuItem value={'MRS'}>MRS</MenuItem>
                         </Select>
                         <TextField data-testid={`passenger-first-name-${passenger.getId()}`} label="First Name"
+                                   name="firstName"
                                    variant="standard"
-                                   value={passenger.getFirstName()}/>
+                                   value={passenger.getFirstName()}
+                                   onChange={(e) => {
+                                       changeFirstName(passenger.getId(), e.target.value)
+                                   }}/>
                         <TextField data-testid={`passenger-last-name-${passenger.getId()}`} label="Last Name"
+                                   name="lastName"
                                    variant="standard"
-                                   value={passenger.getLastName()}/>
+                                   value={passenger.getLastName()}
+                                   onChange={(e) => {
+                                       changeLastName(passenger.getId(), e.target.value)
+                                   }}/>
                         <Select
                             data-testid={`passenger-gender-${passenger.getId()}`}
                             value={passenger.getGender()}
                             label="Gender"
+                            name="gender"
                             onChange={() => {
                             }}
                         >
                             <MenuItem value={'MR'}>MALE</MenuItem>
                             <MenuItem value={'MRS'}>FEMALE</MenuItem>
                         </Select>
-
                         <TextField data-testid={`passenger-date-of-birth-${passenger.getId()}`} label="Date of birth"
+                                   name="dateOfBirth"
                                    variant="standard"
-                                   value={passenger.getDateOfBirth()}/>
-                    </div>
+                                   value={passenger.getDateOfBirth()}
+                                   onChange={(e) => {
+                                       changeDateOfBirth(passenger.getId(), e.target.value)
+                                   }}/>
+                        <Button type={'submit'}>Submit</Button>
+                    </form>
                 )
             )}
         </>

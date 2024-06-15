@@ -1,5 +1,5 @@
-type Title = "MR" | "MRS";
-type Gender = "MALE" | "FEMALE"
+export type Title = "MR" | "MRS";
+export type Gender = "MALE" | "FEMALE"
 
 export class Passenger {
     private id: number;
