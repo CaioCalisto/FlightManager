@@ -20,7 +20,8 @@ export const Edit = ({passengerIds}: Props) => {
     return (
         <>
             {data?.map((passenger: Passenger) => (
-                    <form key={`booking-passenger-edit-${passenger.getId()}`} onSubmit={() => {
+                    <form key={`booking-passenger-edit-${passenger.getId()}`} onSubmit={(e) => {
+                        e.preventDefault();
                     }}>
                         <Select
                             data-testid={`passenger-title-${passenger.getId()}`}
