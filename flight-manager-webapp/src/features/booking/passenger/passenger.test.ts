@@ -96,3 +96,11 @@ it('should change title', () => {
 
     expect(passenger.getTitle()).toBe(newTitle)
 })
+
+it('should change title', () => {
+    const passenger = new Passenger(1, 'MR', 'MALE', 'Anyone', 'Else', '1970-08-20')
+    const newDate = '1970-08-20'
+    passenger.setDateOfBirth(newDate)
+
+    expect(passenger.getDateOfBirth()).toBe(newDate)
+})

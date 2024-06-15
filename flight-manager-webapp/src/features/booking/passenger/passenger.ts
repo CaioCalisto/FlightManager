@@ -89,4 +89,8 @@ export class Passenger {
     setTitle(newTitle: Title): void {
         this.title = newTitle
     }
+
+    setDateOfBirth(newDate: string): void {
+        this.dateOfBirth = newDate
+    }
 }
