@@ -7,6 +7,8 @@ interface UsePassengerDetailsResponse {
     changeFirstName: (id: number, value: string) => void
     changeLastName: (id: number, value: string) => void
     changeDateOfBirth: (id: number, value: string) => void
+    changeTitle: (id: number, value: string) => void
+    changeGender: (id: number, value: string) => void
     submit: () => void
 }
 
@@ -30,5 +32,11 @@ export function usePassengerDetails(passengerIds: string[]): UsePassengerDetails
     function changeDateOfBirth(id: number, value: string) {
     }
 
-    return {data, changeFirstName, changeLastName, changeDateOfBirth, submit}
+    function changeTitle(id: number, value: string) {
+    }
+
+    function changeGender(id: number, value: string) {
+    }
+
+    return {data, changeFirstName, changeLastName, changeDateOfBirth, changeTitle, changeGender, submit}
 }

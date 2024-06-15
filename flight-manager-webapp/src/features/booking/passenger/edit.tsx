@@ -8,7 +8,14 @@ type Props = {
 }
 
 export const Edit = ({passengerIds}: Props) => {
-    const {data, changeFirstName, changeLastName, changeDateOfBirth} = usePassengerDetails(passengerIds)
+    const {
+        data,
+        changeFirstName,
+        changeLastName,
+        changeDateOfBirth,
+        changeTitle,
+        changeGender
+    } = usePassengerDetails(passengerIds)
 
     return (
         <>
@@ -20,7 +27,8 @@ export const Edit = ({passengerIds}: Props) => {
                             value={passenger.getTitle()}
                             name={'title'}
                             label="Title"
-                            onChange={() => {
+                            onChange={(e) => {
+                                changeTitle(passenger.getId(), e.target.value)
                             }}
                         >
                             <MenuItem value={'MR'}>MR</MenuItem>
@@ -45,11 +53,12 @@ export const Edit = ({passengerIds}: Props) => {
                             value={passenger.getGender()}
                             label="Gender"
                             name="gender"
-                            onChange={() => {
+                            onChange={(e) => {
+                                changeGender(passenger.getId(), e.target.value)
                             }}
                         >
-                            <MenuItem value={'MR'}>MALE</MenuItem>
-                            <MenuItem value={'MRS'}>FEMALE</MenuItem>
+                            <MenuItem value={'MALE'}>MALE</MenuItem>
+                            <MenuItem value={'FEMALE'}>FEMALE</MenuItem>
                         </Select>
                         <TextField data-testid={`passenger-date-of-birth-${passenger.getId()}`} label="Date of birth"
                                    name="dateOfBirth"
