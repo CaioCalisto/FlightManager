@@ -14,15 +14,11 @@ interface UsePassengerDetailsResponse {
 
 export function usePassengerDetails(passengerIds: string[]): UsePassengerDetailsResponse {
     const [data, setData] = useState<Passenger[] | undefined>(undefined)
-
-    function useFetchData() {
-        const {data: passengersData} = useData<Passenger[]>(`/api/Passengers?ids=${passengerIds.join(',')}`);
-        setData(passengersData);
-    }
+    const {data: passengersData} = useData<Passenger[]>(`/api/Passengers?ids=${passengerIds.join(',')}`);
 
     useEffect(() => {
-        useFetchData()
-    }, [passengerIds]);
+        if(passengersData) setData(passengersData)
+    }, [passengersData]);
 
     function submit() {
     }
