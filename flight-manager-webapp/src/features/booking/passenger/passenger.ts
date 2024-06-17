@@ -2,7 +2,7 @@ export type Title = "MR" | "MRS";
 export type Gender = "MALE" | "FEMALE"
 
 export class Passenger {
-    private id: number;
+    private id: string;
     private title: Title;
     private gender: Gender;
     private firstName: string;
@@ -10,7 +10,7 @@ export class Passenger {
     private dateOfBirth: string;
     private errors: string[];
 
-    constructor(id: number, title: Title, gender: Gender, firstName: string, lastName: string, dateOfBirth: string) {
+    constructor(id: string, title: Title, gender: Gender, firstName: string, lastName: string, dateOfBirth: string) {
         this.id = id;
         this.title = title;
         this.gender = gender;
@@ -20,7 +20,7 @@ export class Passenger {
         this.errors = [];
     }
 
-    getId(): number {
+    getId(): string {
         return this.id
     }
 

@@ -1,87 +1,95 @@
-import useData from "../../../hooks/useData";
 import {Gender, Passenger, Title} from "./passenger";
 import {useEffect, useState} from "react";
+import axios from "axios";
+import {useQuery} from "react-query";
 
 interface UsePassengerDetailsResponse {
     data: Passenger[] | undefined
-    changeFirstName: (passengerId: number, value: string) => void
-    changeLastName: (passengerId: number, value: string) => void
-    changeDateOfBirth: (passengerId: number, value: string) => void
-    changeTitle: (passengerId: number, value: string) => void
-    changeGender: (passengerId: number, value: string) => void
+    changeFirstName: (passengerId: string, value: string) => void
+    changeLastName: (passengerId: string, value: string) => void
+    changeDateOfBirth: (passengerId: string, value: string) => void
+    changeTitle: (passengerId: string, value: string) => void
+    changeGender: (passengerId: string, value: string) => void
     submit: () => void
 }
 
+function fetchPassengers(): Promise<{ data: PassengerResponse[] }> {
+    return axios
+        .get(`http://localhost:4000/passengers`)
+}
+
+interface PassengerResponse {
+    id: string;
+    title: string;
+    gender: string,
+    firstName: string,
+    lastName: string,
+    dateOfBirth: string,
+}
+
 export function usePassengerDetails(passengerIds: string[]): UsePassengerDetailsResponse {
-    const [data, setData] = useState<Passenger[] | undefined>(undefined)
-    const {data: passengersData} = useData<Passenger[]>(`/api/Passengers?ids=${passengerIds.join(',')}`);
+    const [formData, setFormData] = useState<Passenger[] | undefined>(undefined)
+    const {data: passengersData} = useQuery('passengers', fetchPassengers)
 
     useEffect(() => {
-        if(passengersData) setData(passengersData)
+        if (passengersData) {
+            const newData: Passenger[] = passengersData.data.map((passenger: PassengerResponse) => {
+                return new Passenger(passenger.id, passenger.title as Title, passenger.gender as Gender, passenger.firstName, passenger.lastName, passenger.dateOfBirth);
+            });
+            setFormData(newData)
+        }
     }, [passengersData]);
 
     function submit() {
     }
 
-    function changeFirstName(passengerId: number, value: string) {
-        const currentPassenger = data?.find(p => p.getId() === passengerId)
-        currentPassenger?.setFirstName(value)
-        setData(prev => {
-            if (!prev) return prev
+    function changeFirstName(passengerId: string, value: string) {
+        setFormData(prev =>
             prev?.map(p => {
-                if (p.getId() === passengerId) return currentPassenger
-                return p
-            })
-        })
+                if (p.getId() === passengerId) {
+                    p.setFirstName(value);
+                }
+                return p;
+            }) ?? []
+        );
     }
 
-    function changeLastName(passengerId: number, value: string) {
-        const currentPassenger = data?.find(p => p.getId() === passengerId)
-        currentPassenger?.setLastName(value)
-        setData(prev => {
-            if (!prev) return prev
+    function changeLastName(passengerId: string, value: string) {
+        setFormData(prev =>
             prev?.map(p => {
-                if (p.getId() === passengerId) return currentPassenger
-                return p
-            })
-        })
+                if (p.getId() === passengerId) {
+                    p.setLastName(value);
+                }
+                return p;
+            }) ?? []
+        );
     }
 
-    function changeDateOfBirth(passengerId: number, value: string) {
-        const currentPassenger = data?.find(p => p.getId() === passengerId)
-        currentPassenger?.setDateOfBirth(value)
-        setData(prev => {
-            if (!prev) return prev
+    function changeDateOfBirth(passengerId: string, value: string) {
+        setFormData(prev =>
             prev?.map(p => {
-                if (p.getId() === passengerId) return currentPassenger
-                return p
-            })
-        })
+                if (p.getId() === passengerId) {
+                    p.setDateOfBirth(value);
+                }
+                return p;
+            }) ?? []
+        );
     }
 
-    function changeTitle(passengerId: number, value: string) {
-        const currentPassenger = data?.find(p => p.getId() === passengerId)
-        currentPassenger?.setTitle(value as Title)
-        setData(prev => {
-            if (!prev) return prev
+    function changeTitle(passengerId: string, value: string) {
+        setFormData(prev =>
             prev?.map(p => {
-                if (p.getId() === passengerId) return currentPassenger
-                return p
-            })
-        })
+                if (p.getId() === passengerId) {
+                    p.setTitle(value as Title);
+                }
+                return p;
+            }) ?? []
+        );
     }
 
-    function changeGender(passengerId: number, value: string) {
-        const currentPassenger = data?.find(p => p.getId() === passengerId)
-        currentPassenger?.setGender(value as Gender)
-        setData(prev => {
-            if (!prev) return prev
-            prev?.map(p => {
-                if (p.getId() === passengerId) return currentPassenger
-                return p
-            })
-        })
+    function changeGender(passengerId: string, value: string) {
+
     }
 
-    return {data, changeFirstName, changeLastName, changeDateOfBirth, changeTitle, changeGender, submit}
+    return {data: formData, changeFirstName, changeLastName, changeDateOfBirth, changeTitle, changeGender, submit}
 }

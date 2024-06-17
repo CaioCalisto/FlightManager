@@ -7,7 +7,7 @@ import {usePassengerDetails} from "./usePassengerDetails";
 jest.mock('./usePassengerDetails')
 
 it('should show current passenger title', () => {
-    const passenger = new Passenger(1, 'MR', 'MALE', 'Caio', 'Calisto', '1988-08-20');
+    const passenger = new Passenger("1", 'MR', 'MALE', 'Caio', 'Calisto', '1988-08-20');
     (usePassengerDetails as jest.Mock).mockImplementation(() => ({data: [passenger]}))
     render(<Edit passengerIds={['1']}/>)
 
@@ -17,7 +17,7 @@ it('should show current passenger title', () => {
 })
 
 it('should show current passenger gender', () => {
-    const passenger = new Passenger(1, 'MR', 'MALE', 'Caio', 'Calisto', '1988-08-20');
+    const passenger = new Passenger("1", 'MR', 'MALE', 'Caio', 'Calisto', '1988-08-20');
     (usePassengerDetails as jest.Mock).mockImplementation(() => ({data: [passenger]}))
     render(<Edit passengerIds={['1']}/>)
 
@@ -27,7 +27,7 @@ it('should show current passenger gender', () => {
 })
 
 it('should show current passenger first name', () => {
-    const passenger = new Passenger(1, 'MR', 'MALE', 'Caio', 'Calisto', '1988-08-20');
+    const passenger = new Passenger("1", 'MR', 'MALE', 'Caio', 'Calisto', '1988-08-20');
     (usePassengerDetails as jest.Mock).mockImplementation(() => ({data: [passenger]}))
     render(<Edit passengerIds={['1']}/>)
 
@@ -37,7 +37,7 @@ it('should show current passenger first name', () => {
 })
 
 it('should show current passenger last name', () => {
-    const passenger = new Passenger(1, 'MR', 'MALE', 'Caio', 'Calisto', '1988-08-20');
+    const passenger = new Passenger("1", 'MR', 'MALE', 'Caio', 'Calisto', '1988-08-20');
     (usePassengerDetails as jest.Mock).mockImplementation(() => ({data: [passenger]}))
     render(<Edit passengerIds={['1']}/>)
 
@@ -47,7 +47,7 @@ it('should show current passenger last name', () => {
 })
 
 it('should show current passenger date of birth', () => {
-    const passenger = new Passenger(1, 'MR', 'MALE', 'Caio', 'Calisto', '1988-08-20');
+    const passenger = new Passenger("1", 'MR', 'MALE', 'Caio', 'Calisto', '1988-08-20');
     (usePassengerDetails as jest.Mock).mockImplementation(() => ({data: [passenger]}))
     render(<Edit passengerIds={['1']}/>)
 
@@ -58,7 +58,7 @@ it('should show current passenger date of birth', () => {
 
 it('should updated first name', () => {
     const changeFirstNameMock = jest.fn()
-    const passenger = new Passenger(1, 'MR', 'MALE', 'Csip', 'Calisto', '1988-08-20');
+    const passenger = new Passenger("1", 'MR', 'MALE', 'Csip', 'Calisto', '1988-08-20');
     (usePassengerDetails as jest.Mock).mockImplementation(() => ({
         data: [passenger],
         changeFirstName: changeFirstNameMock
@@ -73,12 +73,12 @@ it('should updated first name', () => {
         });
     }
 
-    expect(changeFirstNameMock).toHaveBeenCalledWith(1, newName);
+    expect(changeFirstNameMock).toHaveBeenCalledWith("1", newName);
 })
 
 it('should updated last name', () => {
     const changeLastNameMock = jest.fn()
-    const passenger = new Passenger(1, 'MR', 'MALE', 'Caio', 'Csliwto', '1988-08-20');
+    const passenger = new Passenger("1", 'MR', 'MALE', 'Caio', 'Csliwto', '1988-08-20');
     (usePassengerDetails as jest.Mock).mockImplementation(() => ({
         data: [passenger],
         changeLastName: changeLastNameMock
@@ -93,12 +93,12 @@ it('should updated last name', () => {
         });
     }
 
-    expect(changeLastNameMock).toHaveBeenCalledWith(1, newLastName);
+    expect(changeLastNameMock).toHaveBeenCalledWith("1", newLastName);
 })
 
 it('should updated date of birth', () => {
     const changeDateOfBirthMock = jest.fn()
-    const passenger = new Passenger(1, 'MR', 'MALE', 'Caio', 'Calisto', '1989-03-20');
+    const passenger = new Passenger("1", 'MR', 'MALE', 'Caio', 'Calisto', '1989-03-20');
     (usePassengerDetails as jest.Mock).mockImplementation(() => ({
         data: [passenger],
         changeDateOfBirth: changeDateOfBirthMock
@@ -113,12 +113,12 @@ it('should updated date of birth', () => {
         });
     }
 
-    expect(changeDateOfBirthMock).toHaveBeenCalledWith(1, newDateOfBirth);
+    expect(changeDateOfBirthMock).toHaveBeenCalledWith("1", newDateOfBirth);
 })
 
 it('should updated title to MR', async () => {
     const changeTitleMock = jest.fn()
-    const passenger = new Passenger(1, 'MRS', 'MALE', 'Caio', 'Calisto', '1989-03-20');
+    const passenger = new Passenger("1", 'MRS', 'MALE', 'Caio', 'Calisto', '1989-03-20');
     (usePassengerDetails as jest.Mock).mockImplementation(() => ({data: [passenger], changeTitle: changeTitleMock}))
     render(<Edit passengerIds={['1']}/>)
 
@@ -126,12 +126,12 @@ it('should updated title to MR', async () => {
     UserEvent.click(getByRole(screen.getByTestId('passenger-title-1'), 'combobox'))
     await waitFor(() => UserEvent.click(screen.getByText(newTitle)));
 
-    expect(changeTitleMock).toHaveBeenCalledWith(1, newTitle);
+    expect(changeTitleMock).toHaveBeenCalledWith("1", newTitle);
 })
 
 it('should updated title to MRS', async () => {
     const changeTitleMock = jest.fn()
-    const passenger = new Passenger(1, 'MR', 'MALE', 'Natalia', 'Calisto', '1989-03-20');
+    const passenger = new Passenger("1", 'MR', 'MALE', 'Natalia', 'Calisto', '1989-03-20');
     (usePassengerDetails as jest.Mock).mockImplementation(() => ({data: [passenger], changeTitle: changeTitleMock}))
     render(<Edit passengerIds={['1']}/>)
 
@@ -139,12 +139,12 @@ it('should updated title to MRS', async () => {
     UserEvent.click(getByRole(screen.getByTestId('passenger-title-1'), 'combobox'))
     await waitFor(() => UserEvent.click(screen.getByText(newTitle)));
 
-    expect(changeTitleMock).toHaveBeenCalledWith(1, newTitle);
+    expect(changeTitleMock).toHaveBeenCalledWith("1", newTitle);
 })
 
 it('should updated gender to Male', async () => {
     const changeGenderMock = jest.fn()
-    const passenger = new Passenger(1, 'MR', 'FEMALE', 'Caio', 'Calisto', '1989-03-20');
+    const passenger = new Passenger("1", 'MR', 'FEMALE', 'Caio', 'Calisto', '1989-03-20');
     (usePassengerDetails as jest.Mock).mockImplementation(() => ({data: [passenger], changeGender: changeGenderMock}))
     render(<Edit passengerIds={['1']}/>)
 
@@ -152,12 +152,12 @@ it('should updated gender to Male', async () => {
     UserEvent.click(getByRole(screen.getByTestId('passenger-gender-1'), 'combobox'))
     await waitFor(() => UserEvent.click(screen.getByText(newGender)));
 
-    expect(changeGenderMock).toHaveBeenCalledWith(1, newGender);
+    expect(changeGenderMock).toHaveBeenCalledWith("1", newGender);
 })
 
 it('should updated gender to Female', async () => {
     const changeGenderMock = jest.fn()
-    const passenger = new Passenger(1, 'MR', 'MALE', 'Natalia', 'Calisto', '1989-03-20');
+    const passenger = new Passenger("1", 'MR', 'MALE', 'Natalia', 'Calisto', '1989-03-20');
     (usePassengerDetails as jest.Mock).mockImplementation(() => ({data: [passenger], changeGender: changeGenderMock}))
     render(<Edit passengerIds={['1']}/>)
 
@@ -165,5 +165,5 @@ it('should updated gender to Female', async () => {
     UserEvent.click(getByRole(screen.getByTestId('passenger-gender-1'), 'combobox'))
     await waitFor(() => UserEvent.click(screen.getByText(newGender)));
 
-    expect(changeGenderMock).toHaveBeenCalledWith(1, newGender);
+    expect(changeGenderMock).toHaveBeenCalledWith("1", newGender);
 })

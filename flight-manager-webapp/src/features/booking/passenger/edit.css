@@ -1,6 +1,6 @@
 .form {
     display: flex;
     flex-direction: row;
-    gap: 80px;
+    gap: 50px;
     flex-wrap: wrap;
 }
