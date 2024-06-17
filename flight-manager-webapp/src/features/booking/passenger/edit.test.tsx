@@ -167,3 +167,17 @@ it('should updated gender to Female', async () => {
 
     expect(changeGenderMock).toHaveBeenCalledWith("1", newGender);
 })
+
+it('should show error message', async () => {
+    const changeGenderMock = jest.fn()
+    const passenger = new Passenger("1", 'MR', 'MALE', 'Natalia', 'Calisto', '1989-03-20');
+    const errorMessage = 'Maximum a change of 3 digits for first name is allowed'
+    Object.defineProperty(passenger, 'errors', {
+        value: [errorMessage],
+        writable: false,
+    });
+    (usePassengerDetails as jest.Mock).mockImplementation(() => ({data: [passenger], changeGender: changeGenderMock}))
+    render(<Edit passengerIds={['1']}/>)
+
+    expect(screen.getByText(errorMessage)).toBeVisible()
+})

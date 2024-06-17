@@ -72,9 +72,14 @@ export const Edit = ({passengerIds}: Props) => {
                         </form>
                         <br/>
                         <br/>
+                        {passenger.getErrors().map((error: string) => (
+                            <p>{error}</p>
+                        ))}
                     </>
                 )
             )}
+            <br/>
+
         </>
     )
 }
