@@ -1,5 +1,9 @@
+import {CustomError} from "../../../commons/custom-error";
+
 export type Title = "MR" | "MRS";
 export type Gender = "MALE" | "FEMALE"
+const firstNameMax3CharacterErrorCode = 1
+const lastNameMax3CharacterErrorCode = 2
 
 export class Passenger {
     private id: string;
@@ -10,7 +14,7 @@ export class Passenger {
     private lastName: string;
     private lastLastName: string;
     private dateOfBirth: string;
-    private errors: string[];
+    private errors: CustomError[];
 
     constructor(id: string, title: Title, gender: Gender, firstName: string, lastName: string, dateOfBirth: string) {
         this.id = id;
@@ -49,7 +53,9 @@ export class Passenger {
     }
 
     getErrors(): string[] {
-        return this.errors;
+        const errorMessages: string[] = []
+        this.errors.map((error) => errorMessages.push(error.getMessage()))
+        return errorMessages;
     }
 
     setFirstName(newFirstName: string): void {
@@ -62,8 +68,8 @@ export class Passenger {
             }
         }
 
-        if (differenceCount > 3) {
-            this.errors.push('Maximum a change of 3 digits for first name is allowed')
+        if (differenceCount > 3 && this.errors.find(e => e.getCode() === firstNameMax3CharacterErrorCode) === undefined) {
+            this.errors.push(new CustomError(firstNameMax3CharacterErrorCode, 'Maximum a change of 3 digits for first name is allowed'))
         } else {
             this.firstName = newFirstName;
         }
@@ -79,8 +85,8 @@ export class Passenger {
             }
         }
 
-        if (differenceCount > 3) {
-            this.errors.push('Maximum a change of 3 digits for last name is allowed')
+        if (differenceCount > 3 && this.errors.find(e => e.getCode()=== lastNameMax3CharacterErrorCode) === undefined) {
+            this.errors.push(new CustomError(lastNameMax3CharacterErrorCode, 'Maximum a change of 3 digits for last name is allowed'))
         } else {
             this.lastName = newLastName
         }
