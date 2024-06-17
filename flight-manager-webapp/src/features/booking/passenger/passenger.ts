@@ -6,7 +6,9 @@ export class Passenger {
     private title: Title;
     private gender: Gender;
     private firstName: string;
+    private lastFirstName: string;
     private lastName: string;
+    private lastLastName: string;
     private dateOfBirth: string;
     private errors: string[];
 
@@ -15,7 +17,9 @@ export class Passenger {
         this.title = title;
         this.gender = gender;
         this.firstName = firstName;
+        this.lastFirstName = firstName;
         this.lastName = lastName;
+        this.lastLastName = lastName;
         this.dateOfBirth = dateOfBirth;
         this.errors = [];
     }
@@ -49,11 +53,11 @@ export class Passenger {
     }
 
     setFirstName(newFirstName: string): void {
-        const minLength = Math.min(newFirstName.length, this.firstName.length);
+        const minLength = Math.min(newFirstName.length, this.lastFirstName.length);
         let differenceCount = 0;
 
         for (let i = 0; i < minLength; i++) {
-            if (newFirstName[i] !== this.firstName[i]) {
+            if (newFirstName[i] !== this.lastFirstName[i]) {
                 differenceCount++;
             }
         }
@@ -66,11 +70,11 @@ export class Passenger {
     }
 
     setLastName(newLastName: string): void {
-        const minLength = Math.min(newLastName.length, this.lastName.length);
+        const minLength = Math.min(newLastName.length, this.lastLastName.length);
         let differenceCount = 0;
 
         for (let i = 0; i < minLength; i++) {
-            if (newLastName[i] !== this.lastName[i]) {
+            if (newLastName[i] !== this.lastLastName[i]) {
                 differenceCount++;
             }
         }

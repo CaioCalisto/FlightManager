@@ -104,3 +104,26 @@ it('should change title', () => {
 
     expect(passenger.getDateOfBirth()).toBe(newDate)
 })
+
+it('should add error if first name change more than 3 characters after multiple updates', () => {
+    const passenger = new Passenger("1", 'MR', 'MALE', 'Nstslks', 'Calisto', '1988-08-20')
+    passenger.setFirstName('Natslks')
+    passenger.setFirstName('Natalks')
+    passenger.setFirstName('Natalis')
+    passenger.setFirstName('Natalia')
+
+    expect(passenger.getErrors().length).toBe(1)
+    expect(passenger.getErrors()[0]).toBe('Maximum a change of 3 digits for first name is allowed')
+})
+
+it('should add error if last name change more than 3 characters after multiple updates', () => {
+    const passenger = new Passenger("1", 'MR', 'MALE', 'Caio', 'Cslodgp', '1988-08-20')
+    passenger.setLastName('Cslodgp')
+    passenger.setLastName('Calodgp')
+    passenger.setLastName('Calidgp')
+    passenger.setLastName('Calisgp')
+    passenger.setLastName('Calistp')
+
+    expect(passenger.getErrors().length).toBe(1)
+    expect(passenger.getErrors()[0]).toBe('Maximum a change of 3 digits for last name is allowed')
+})
