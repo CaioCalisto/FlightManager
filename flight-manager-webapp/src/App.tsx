@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
-import {Edit} from "./features/booking/passenger/edit";
 import {QueryClient, QueryClientProvider} from "react-query";
+import {BookingForm} from "./features/booking/booking-form";
 
 const queryClient = new QueryClient()
 
@@ -9,10 +9,7 @@ function App() {
     return (
         <QueryClientProvider client={queryClient}>
             <div className="App">
-                Example of Form
-                <br/>
-                <br/>
-                <Edit passengerIds={["1"]}/>
+                <BookingForm passengerIds={["1"]}/>
             </div>
         </QueryClientProvider>
     );
